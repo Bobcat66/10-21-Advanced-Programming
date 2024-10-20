@@ -10,13 +10,13 @@ Despite being an Object-Oriented Language, Java has implemented many features of
 ### Functional Interfaces
 Earlier, we learned that everything in Java is an object, and this still holds true for Java's functional programming features. In Java, for a function to behave as a First-Class Citizen, it must first be wrapped in a special class called a **Functional Interface**. A Functional Interface is essentially just a class with exactly one abstract method, which implements the function. There are four types of Functional Interfaces that are implemented by default in Java:
 
-- **Suppliers**: A supplier is a functional interface that takes no parameters and returns a value. Suppliers are often used for lazy evaluation
+- **Suppliers**: A supplier is a functional interface that takes no parameters and returns a value. Suppliers are often used for lazy evaluation. Values are returned from Suppliers using the `get` method.
 
-- **Consumers**: A consumer is the opposite of a Supplier, it takes a single parameter and returns nothing. If we wanted to pass data to an arbitrary method, we would likely implement it as a Consumer
+- **Consumers**: A consumer is the opposite of a Supplier, it takes a single parameter and returns nothing. If we wanted to pass data to an arbitrary method, we would likely implement it as a Consumer. Values are passed to Consumers using the `accept` method.
 
-- **Predicates**: A predicate takes an arbitrary value and returns a boolean value. Predicates are useful for filtering data
+- **Predicates**: A predicate takes an arbitrary value and returns a boolean value. Predicates are useful for filtering data. Predicates are called using the `test` method.
 
-- **Functions**: A function takes one arbitrary parameter and returns an arbitrary value
+- **Functions**: A function takes one arbitrary parameter and returns an arbitrary value. Functions are called using the `apply` method.
 
 >In computer science, "Lazy Evaluation" means the value of an expression is only evaluated when it is needed. Usually, when an expression is passed to a function in Java, its value is evaluated immediately. However, there are many cases where we wish to evaluate an expression at an arbitrary time (for example, when we want to poll the position of a controller stick in a command), so we use a functional interface to evaluate the expression's value lazily.
 
@@ -28,6 +28,8 @@ Another important component of Java's support for Functional Programming are **L
 ```
 For example, a lambda function that took an integer n, and returned n+1 would be written like this:
 ```java
-(int n) -> n + 1;
+(n) -> n + 1;
 ```
-In Java, Lambda Expressions are Functional Interface, and can be treated the same as any other object. They can be passed as parameters, returned from other functions, and assigned to variables.
+In Java, Lambda Expressions are Functional Interfaces, and can be treated the same as any other object. They can be passed as parameters, returned from other functions, and assigned to variables.
+
+>In the functionalInterfaces.java file, there are some basic examples of functional interfaces and lambda expressions. Take some time to play around and experiment with them in order to familiarize yourself with how they work, before proceeding on to thhe next section
