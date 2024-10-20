@@ -38,7 +38,7 @@ In Java, Lambda Expressions are Functional Interfaces, and can be treated the sa
 
 If you have taken Precalculus (or are currently taking it), then you may have heard of the concept of **Function Composition**. Functional Composition is one of the most important operations in functional programming. For those who aren't familiar with it, Function Composition is a special operator that combines two functions:
 $$
-f \circ g = f(g(x))
+(f \circ g)(x) = f(g(x))
 $$
 
 Java supports functional composition, with the `compose` method. As an example, consider the following series of equations:
@@ -57,26 +57,27 @@ Function<Double,Double> h = f.compose(g);
 
 ## Higher-Order Functions
 
-Another important concept in Functional Programming is the concept of a **Higher-Order Function**. A Higher-Order function is a function that takes a *function* as a parameter, or returns one as its output. While at first they may seem daunting, you've already worked with one before. The `compose` method we used in the last section is an example of a higher-order function. It takes a function as its input, and returns another function as its output. Another example of a higher-order function you may have already worked with is the Derivative operator from Calculus. It takes a function as its input, and produces that function's derivative (another function) as its output (In the cases where the derivative is a constant, such as when differentiating linear equations, we can simply treat the constant as a function that always produces the same output, regardless of input). Below is an example of a simple higher-order function $L$ that takes a function $f$ and returns a new function $L[f]$ that adds two to $f$'s input:
+Another important concept in Functional Programming is the concept of a **Higher-Order Function**. A Higher-Order function is a function that takes a *function* as a parameter, or returns one as its output. While at first they may seem daunting, you've already worked with one before. The `compose` method we used in the last section is an example of a higher-order function. It takes a function as its input, and returns another function as its output. Another example of a higher-order function you may have already worked with is the Derivative operator from Calculus. It takes a function as its input, and produces that function's derivative (another function) as its output (In the cases where the derivative is a constant, such as when differentiating linear equations, we can simply treat the constant as a function that always produces the same output, regardless of input). Below is an example of a simple higher-order function $L$ that takes a function $f$ and returns a new function $L[f]$ that applies $f$ to its input twice:
 
 $$
-L[f](x) = (f \circ (n\mapsto n + 2))(x) = f(x + 2)
+L[f] = f \circ f = x \mapsto f(f(x))
 $$
->Here, $ n \mapsto n + 2 $ is an example of **arrow notation**, which is another notation system for functions. Arrow notation essentially is the same as java's lambda notation, with the function's input being on the left side of the arrow, and its output being on the right side of the arrow. Arrow notation allows us to denote functions anonymously, without giving them an explicit identifier
 
 >You may have noticed that we used $f$ to denote the function, not $f(x)$. This is because, strictly speaking, $f$ refers to the function *itself*, while $f(x)$ refers to the function evaluated with some arbitrary input $x$. The two symbols are often used interchangeably, but this is technically an abuse of notation.
+
+>$ x\mapsto f(f(x)) $ is an example of **Arrow notation** for functions. Arrow notation essentially works the same way as lambda expressions in Java, with the function's input being to the left of the arrow, and the function's output being to the right of the arrow
 
 Here is how we would implement this function in Java:
 ```java
 public Function<Double,Double> L(Function<Double,Double> f){
-    return n -> f.apply(n + 2);
+    return n -> f.apply(f.apply(n));
 }
 ```
+>When a lambda expression takes exactly one argument, the parenthesis are optional
 
 Alternatively, we could also implement it with the `compose` method:
 ```java
 public Function<Double,Double> L(Function<Double,Double> f){
-    return f.compose(n -> n + 2);
+    return f.compose(f);
 }
 ```
->When a lambda expression takes exactly one argument, the parenthesis are optional
