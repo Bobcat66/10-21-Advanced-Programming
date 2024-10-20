@@ -10,11 +10,11 @@ public class functionalInterfaces {
         // This is an integer supplier that supplies integers from a random number generator
         Supplier<Integer> randintSupplier = () -> RandomGenerator.getDefault().nextInt();
         // This is an integer consumer that consumes integers and prints them to the console
-        Consumer<Integer> intPrinter = (n) -> System.out.println(n);
+        Consumer<Integer> intPrinter = n -> System.out.println(n);
         // This is a predicate that checks if an integer is even
-        Predicate<Integer> isEven = (n) -> n % 2 == 0;
+        Predicate<Integer> isEven = n -> n % 2 == 0;
         // This is a function that adds one to an integer
-        Function<Integer,Integer> addOne = (n) -> n + 1;
+        Function<Integer,Integer> addOne = n -> n + 1;
 
         // This gets a random integer from randintSupplier and stores it in randint
         int randint = randintSupplier.get();
