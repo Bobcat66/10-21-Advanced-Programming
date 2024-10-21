@@ -12,8 +12,16 @@ public class monads {
         sarr.add("Seven");
         sarr.add("Nine");
         ArrayListFunctor<Integer> sarrMapped = sarr.map(n -> n.length());
+        ArrayListFunctor<String> sarrMapped2 = sarr.map(n -> n.length()).map(n -> {
+            String str = "n";
+            for (int i = 1; i < n; i++){
+                str += "n";
+            }
+            return str;
+        });
         System.out.println(sarr);
         System.out.println(sarrMapped);
+        System.out.println(sarrMapped2);
     }
 }
 
