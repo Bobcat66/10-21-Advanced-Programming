@@ -84,8 +84,6 @@ public Function<Double,Double> L(Function<Double,Double> f){
 
 > In the higherOrderFunctions.java file, this code has been implemented. Take some time to experiment with it before proceeding
 
-## Currying
-
 ## Functors and Monads
 
 Two constructs that come up frequently in Functional Programming are Functors and Monads. Monads are essentially just Functors with additional structure, so we shall deal with Functors first.
