@@ -1,6 +1,6 @@
 # Functional Programming 
 
->This is a followup to the "Introduction to Command-Based Programming" tutorial, and assumes you already have some experience with Java and the FRC software ecosystem. Familiarity with algebra is also highly recommended.
+>This is a followup to the "Introduction to Command-Based Programming" tutorial, and assumes you already have some experience with Java and the FRC software ecosystem. Familiarity with polymorphism, inheritance, and algebra is also highly recommended.
 
 As we have previously discussed, Java is an **Object-Oriented Language**. While this concept was briefly touched upon in the last lesson, we didn't go into too much detail about what that actually means. In Java, programs are **always** organized as objects. Every variable and every function is merely an attribute of an object. However, this is not the only way that programming languages can be structured. Another common paradigm is **Functional Programming**. In a Functional paradigm, programs are oriented around *functions*, not objects. Additionally, functions are **First-Class Citizens** in functional languages. This means that functions can be passed as parameters, returned by other functions, and assigned to variables, just like objects in Java
 
@@ -81,3 +81,15 @@ public Function<Double,Double> L(Function<Double,Double> f){
     return f.compose(f);
 }
 ```
+
+> In the higherOrderFunctions.java file, this code has been implemented. Take some time to experiment with it before proceeding
+
+## Currying
+
+## Functors and Monads
+
+Two constructs that come up frequently in Functional Programming are Functors and Monads. Monads are essentially just Functors with additional structure, so we shall deal with Functors first.
+
+### What is a Functor
+
+A functor is a container that supports 
