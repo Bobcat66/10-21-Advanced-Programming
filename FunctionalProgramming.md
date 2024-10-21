@@ -92,4 +92,51 @@ Two constructs that come up frequently in Functional Programming are Functors an
 
 ### What is a Functor
 
-A functor is a container that supports 
+A functor is a container that can map functions to its values while preserving their structure. As an example, let take a look at the following class:
+
+```java
+class FunctorList<T> extends ArrayList<T> {
+
+    /* An arraylist extended to support .map() */
+    public <R> FunctorList<R> map(Function<T,R> mapper){
+        FunctorList<R> newArr = new FunctorList<>();
+        for (T elem : this) {
+            newArr.add(mapper.apply(elem));
+        }
+        return newArr;
+    }
+
+}
+
+
+```
+The `FunctorList` class extends `ArrayList`, but adds a new `map` method. The `map` method takes a function, `mapper`, applies it to every element of the `FunctorList`, and returns a new `FunctorList` containing the values returned from `mapper`. For a more concrete example, consider the following list:
+```java
+FunctorList<Double> tempsCelsius = new FunctorList<>(); 
+tempsCelsius.add(22.1);
+tempsCelsius.add(22.0);
+tempsCelsius.add(17.9);
+tempsCelsius.add(25.6);
+tempsCelsius.add(18.5);
+// [22.1, 22.0, 17.9, 25.6, 18.5]
+```
+Let us say that we wanted to convert the list of temperatures from celsius to Fahrenheit. If we were doing this with a normal `ArrayList`, we would need to use a for loop:
+```java
+ArrayList<Double> tempsFahrenheit = new ArrayList<>();
+for (Double temp : tempsCelsius){
+    tempsFahrenheit.add((temp * 1.8) + 32);
+}
+```
+However, `FunctorList`'s `map` method abstracts this into a simpler and more readable interface:
+```java
+FunctorList<Double> tempsFahrenheit = tempsCelsius.map(n -> (n * 1.8) + 32);
+```
+Additionally, the `map` function allows for mapping from one type to another, meaning that the type returned by the `mapper` function does not have to match the type of the inital `FunctorList`'s elements. Below is some code that will cast all of `tempFahrenheit` values to Integers:
+```java
+FunctorList<Integer> tempsFahrenheitInt = tempsFahrenheit.map(n -> (int) n);
+```
+>You can test this code out for yourself in the functorExample.java file
+
+### What is a Monad
+
+A burrito is a burritoid in the category of endotortillas
